@@ -1,0 +1,43 @@
+---
+- hosts: btc-nodes
+  user: root
+
+  tasks:
+
+    - name: set bitcoin-core version
+      set_fact:
+        btc_version: '0.18.0'
+
+    - name: stopping bitcoind service
+      systemd:
+        name: bitcoind
+        state: stopped
+
+    - name: downloading bitcoin-core {{ btc_version }}
+      get_url:
+        url: https://bitcoin.org/bin/bitcoin-core-{{ btc_version }}/bitcoin-{{ btc_version }}-x86_64-linux-gnu.tar.gz
+        dest: /srv/versions/bitcoin-{{ btc_version }}-x86_64-linux-gnu.tar.gz
+        mode: 0644
+
+    - name: extracting bitcoin-core {{ btc_version }}
+      unarchive:
+        src: /srv/versions/bitcoin-{{ btc_version }}-x86_64-linux-gnu.tar.gz
+        dest: /srv/versions/
+        remote_src: yes
+
+    - name: installing bitcoin-cli {{ btc_version }}
+      command: install -m 0755 -o root -g root -t /usr/local/bin /srv/versions/bitcoin-{{ btc_version }}/bin/bitcoin-cli
+
+    - name: installing bitcoind {{ btc_version }}
+      command: install -m 0755 -o root -g root -t /usr/local/bin /srv/versions/bitcoin-{{ btc_version }}/bin/bitcoind
+    
+    - name: installing bitcoin-qt {{ btc_version }}
+      command: install -m 0755 -o root -g root -t /usr/local/bin /srv/versions/bitcoin-{{ btc_version }}/bin/bitcoin-qt
+
+    - name: installing bitcoin-tx {{ btc_version }}
+      command: install -m 0755 -o root -g root -t /usr/local/bin /srv/versions/bitcoin-{{ btc_version }}/bin/bitcoin-tx
+
+    - name: starting bitcoind service
+      systemd:
+        name: bitcoind
+        state: started

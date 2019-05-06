@@ -1,0 +1,6 @@
+# example hosts file for ansible
+
+[btc-nodes]
+node-hiccup.domain.com          # no ssh port provided, default (22)
+node-stoick.domain.com:22       # default ssh port provided
+node-gobber.domain.com:2222     # non-default ssh port provided
