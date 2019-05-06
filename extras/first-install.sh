@@ -3,7 +3,7 @@
 # for further bitcoin update uses the provided ansible playbook
 
 # installing systemctl service
-wget GITHUBLINK -O /etc/systemd/system/multi-user.target.wants/
+wget https://raw.githubusercontent.com/totles/btc-full-node-ansible/master/extras/bitcoind.service -O /etc/systemd/system/multi-user.target.wants/bitcoind.service
 
 # creating bitcoin directories
 mkdir -p /srv/bitcoin
