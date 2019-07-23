@@ -15,5 +15,8 @@ touch /srv/bitcoin/bitcoin.cfg
 # reloading systemctl daemon
 systemctl daemon-reload
 
+# autostart bitcoind
+systemctl enable-bitcoind.service
+
 # make sure daemon is not running yet
 systemctl stop bitcoind.service
