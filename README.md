@@ -16,8 +16,10 @@ You can make changes to your node (like RPC, etc) in the config file `/srv/bitco
 -   run the provided ansible playbook on your client with `ansible-playbook btc-upgrade.yml`
 
 ## Updating your Bitcoin Full Node
-If your Node is up and running and a new version is available just change the version number in your `btc-upgrade.yml` file -> `btc_version: '0.18.0'` to the newest and run the playbook with:
+If your Node is up and running and a new version is available just change the version number in your `btc-upgrade.yml` file -> `btc_version: '0.19.0.1'` to the newest and run the playbook with:
 -   `ansible-playbook btc-upgrade.yml`
+
+<sup>The download for installing/upgrading will happen via bitcoin.org which restrict their download speed, so the download will take a few minutes</sup>
 
 ## Extras
 
