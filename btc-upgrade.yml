@@ -6,7 +6,7 @@
 
     - name: set bitcoin-core version
       set_fact:
-        btc_version: '0.19.0.1'
+        btc_version: '0.21.0'
 
     - name: stopping bitcoind service
       systemd:
